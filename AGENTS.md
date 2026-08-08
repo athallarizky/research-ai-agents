@@ -66,14 +66,16 @@ When the user asks to save the current session, or when a session is about to en
 
 ## Git Workflow
 
-This repo follows strict git conventions:
+Repo conventions:
 
-- **Conventional commits** (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, etc.)
-- **Signed commits required** (SSH signing, verified on GitHub)
-- **No Claude attribution** in commit messages or PR bodies (no `Co-Authored-By: Claude`, no `Generated with Claude Code` footer)
-- **Never auto-commit or auto-push.** Stage and stop. Wait for explicit user instruction.
+- **Conventional commits** (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, etc.) — community standard, keeps history readable
 - **Audit before push.** Scan diffs for credentials, PII, secrets, `.env` files. Block if found.
-- **Two identities possible.** User has two GitHub accounts (athallarizky + xenna). Always ask which identity to push as before pushing.
+
+For AI agents working in this repo:
+
+- **Never auto-commit or auto-push.** Stage and stop. Wait for explicit user instruction.
+
+The author's personal git workflow preferences (commit signing, attribution style, identity selection, etc.) live in local agent memory, not in this public file. External contributors should follow their own conventions; this repo does not enforce signing or attribution policies.
 
 ## How to Consume This Repo (for Agents)
 
@@ -109,7 +111,6 @@ When starting research on a new AI agent topic:
 - Run `git diff --cached` and review the staged content
 - Verify no credentials, no PII, no sensitive paths
 - Verify commit message follows conventional commits
-- Verify signing key matches the chosen identity
 - Ask user before pushing
 
 ## Contact

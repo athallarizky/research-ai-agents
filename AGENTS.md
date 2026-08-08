@@ -40,6 +40,31 @@ research-ai-agents/
 - Cross-link between topics with relative paths
 - No numeric prefixes on filenames
 
+### Recommended Topic Structure
+
+Topics vary in nature — some are framework deep-dives, others are evaluation-heavy, methodology-focused, or comparison-driven. The patterns below are **not mandatory**; use what fits each topic. Skip what doesn't.
+
+Patterns proven useful in [`pi-agent-core/`](./pi-agent-core) (the reference implementation):
+
+**Structural (organize knowledge):**
+
+- **Overview** — what it is, why it matters
+- **Comparison tables** — vs alternatives, side-by-side
+- **Pros/cons** — for decision-making contexts
+- **Rule of thumb** — quick reference for common decisions
+
+**Conceptual aids (build mental model):**
+
+- **Analogies** — relate to concepts the audience already knows (frameworks, patterns, everyday objects). Examples from `pi-agent-core`: "Pi is Express.js for AI agents", "Agent = useState on the server", "LangChain:Spring Boot :: Pi:Express :: LangGraph:Temporal". Caveat: analogies are imperfect — pick ones the target audience will recognize, and don't force them where they don't fit.
+- **Glossary** — define terms specific to the topic
+
+**Concrete artifacts (grounding):**
+
+- **Code examples** — minimal, runnable snippets
+- **ASCII diagrams** — when visual structure helps (architecture, flow, decision trees)
+
+See [`pi-agent-core/`](./pi-agent-core) for a complete worked example (14 files covering all patterns above). Pick the subset that fits the topic's nature; don't force all patterns into every topic.
+
 ## Languages
 
 Mix freely. Use whatever fits the content (Indonesian, English, technical jargon). Don't translate for consistency.

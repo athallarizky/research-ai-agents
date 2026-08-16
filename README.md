@@ -16,6 +16,7 @@ This repo is a personal knowledge base of research on AI agent tooling. Each top
 |-------|---------|------|
 | [pi-agent-core](./pi-agent-core) | Pi toolkit (earendil-works/pi) — architecture, comparisons vs LangChain/LangGraph, code examples, MCP and RAG integration patterns | 2026-08-08 |
 | [session-interchange-format](./session-interchange-format) | Portable format for saving and seeding AI agent session context across tools (Claude Code, Cursor, Continue, custom agents) | 2026-08-08 |
+| [ai-terminology-map](./ai-terminology-map) | Taxonomy of AI terms — concept vs technique vs pattern vs methodology vs architecture vs protocol vs artifact; the "X engineering" stack (prompt → context → harness → loop → graph) | 2026-08-16 |
 
 ## Tools
 

@@ -21,6 +21,19 @@ credentials/
 # Logs
 *.log
 
+# Agent workspace dirs
+.commandcode/
+.claude/
+.cursor/
+.codex/
+.copilot/
+.windsurf/
+.augment/
+.continue/
+.aider/
+.gemini/
+.opencode/
+
 # Build / runtime artifacts (if a topic includes code)
 node_modules/
 __pycache__/

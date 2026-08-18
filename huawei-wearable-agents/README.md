@@ -34,6 +34,9 @@ di companion app HP, komunikasi via Wear Engine P2P. Detail di
 8. `08-end-to-end-diagrams.md` — diagram teknis end-to-end (2026-08-19):
    arsitektur Watch↔Bridge↔cw-hub↔Claude Code dan sequence approval A2,
    dibuat dengan skill diagram-design (HTML di `diagrams/`)
+9. `09-agent-checkpoint.md` — checkpoint handoff lintas device
+   (2026-08-19): status, riwayat sesi, open questions — pintu masuk
+   untuk agent baru
 
 ## Konsep hasil riset
 

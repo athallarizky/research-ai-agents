@@ -31,6 +31,9 @@ di companion app HP, komunikasi via Wear Engine P2P. Detail di
 7. `07-project-ideas-catalog.md` — katalog ide project (2026-08-18):
    produktivitas, gamification/belajar bahasa, AI pet, hiburan — semua
    masih level ide, belum ada yang dibawa ke tahap design
+8. `08-end-to-end-diagrams.md` — diagram teknis end-to-end (2026-08-19):
+   arsitektur Watch↔Bridge↔cw-hub↔Claude Code dan sequence approval A2,
+   dibuat dengan skill diagram-design (HTML di `diagrams/`)
 
 ## Konsep hasil riset
 

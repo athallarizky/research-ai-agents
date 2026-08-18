@@ -26,13 +26,17 @@ di companion app HP, komunikasi via Wear Engine P2P. Detail di
    precedent, dan alternatif tanpa watch app
 5. `05-two-lane-bridge-design.md` — design terkunci (2026-08-18): dua lane,
    keputusan tech stack, kontrak API cw-hub, protokol safety
+6. `06-system-explained-simply.md` — versi bahasa sederhana: analogi kantor,
+   tiga cerita alur (approve, pengawasan, input dari jam)
 
-## Konsep yang sedang dikembangkan
+## Konsep hasil riset
 
 Aplikasi konkret dari riset ini: **remote control Claude Code (Termux) dari
-watch** — watch sebagai remote approve/monitor. Keputusan terkini: Lane A
-(supervise) sebagai MVP, bridge app Kotlin, watch app dumb renderer. Semua
-detail dan decision log di `05-two-lane-bridge-design.md`.
+watch** — watch sebagai remote approve/monitor. Keputusan: Lane A (supervise)
+sebagai MVP konsep, bridge Kotlin, watch app dumb renderer. Status: **design
+only** — repo ini khusus riset & diskusi, tidak ada implementasi yang
+direncanakan di sini. Detail dan decision log di
+`05-two-lane-bridge-design.md`.
 
 ## Intuisi utama
 

@@ -65,13 +65,17 @@ produk sebelum berinvestasi di Lite Wearable app.
 
 ## Open questions (belum diriset)
 
-- Apakah notification reply / quick reply dari watch bisa memicu intent ke
-  app pihak ketiga di HP?
+- Notification reply dari watch ke app pihak ketiga: **resolved 2026-08-18** —
+  jalurnya RemoteInput standar via notification bridge Huawei Health (khusus
+  pairing Android); input teks bebas hanya lewat kanal ini karena framework
+  lite tanpa IME. Sisa verifikasi: keyboard/voice tersedia atau tidak di
+  Fit 4 Pro, atau hanya quick reply
 - Kualitas dan latensi voice input: apakah mic watch bisa streaming audio ke
   HP via Wear Engine file transfer untuk STT di HP?
 - Proses review AppGallery untuk watch app: syarat, waktu, kebijakan konten
   AI/LLM.
-- Batas ukuran pesan/file P2P per call (mempengaruhi desain chunking respons).
+- Batas ukuran pesan/file P2P: **resolved** — 1 KB/pesan, file 100 MB/4 MB
+  (lihat `05` Amendmen 1)
 
 ## Prinsip yang bisa ditarik
 

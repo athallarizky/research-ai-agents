@@ -10,7 +10,7 @@ untuk sesi Claude Code yang berjalan di Termux pada HP yang sama.
 | Tanggal | Keputusan |
 |---|---|
 | 2026-08-18 | MVP = **Lane A** (supervise/approve). Lane B (headless quick prompt) ditunda |
-| 2026-08-18 | Bridge app: **Kotlin** + Wear Engine SDK + foreground service; bridge jadi HTTP *client*, bukan server (lihat koreksi) |
+| 2026-08-18 | Bridge app: **Kotlin** + Wear Engine + foreground service; HTTP *client*, bukan server |
 | 2026-08-18 | Watch app: framework Lite Wearable (JS/HML/CSS) — satu-satunya opsi; peran murni dumb renderer |
 | 2026-08-18 | Sisi Termux: **cw-hub** — server HTTP Node stdlib, zero-dep; akses tmux tetap di Termux |
 
@@ -130,12 +130,67 @@ opt-in per sesi. Filter mengadaptasi konsep
   dan bridge app kemungkinan wajib satu bundle name (verifikasi saat implementasi;
   precedent: Home-Assistant-HarmonyOS-Next)
 
+## Amendmen 1 (2026-08-18): temuan riset lanjutan
+
+### Batas ukuran pesan P2P — terkonfirmasi resmi
+
+Maksimum **1 KB per pesan** ([dokumentasi Send Message](https://developer.huawei.com/consumer/en/doc/connectivity-Guides/send-message-0000001052460491));
+lebih dari itu di-chunk atau lewat file. File transfer: 100 MB phone ke watch,
+4 MB watch ke phone. Konsekuensi: `output_tail` default sekitar 10 baris per
+pesan; lebih dari itu multi-message dengan sequence number.
+
+### Bundle name pairing — terkonfirmasi
+
+[FAQ resmi Wear Engine](https://developer.huawei.com/consumer/en/doc/connectivity-guides/faq-0000001050818031):
+package name, app ID, dan certificate fingerprint watch app harus match dengan
+phone app. Watch app dan bridge adalah satu identitas aplikasi tunggal.
+
+### Mekanisme approval bergeser: A1 → A2
+
+Riset dokumentasi Claude Code menemukan mekanisme resmi yang menggantikan
+injeksi keystroke untuk approval:
+
+| | A1: keystroke injection | A2: PermissionRequest hook gate |
+|---|---|---|
+| Status | tidak resmi; opsi & angka tak didokumentasikan | resmi; decision JSON `allow`/`deny` + always allow |
+| Cara kerja | prompt tampil di TUI → `send-keys` | hook menahan SEBELUM prompt → tunggu watch → balas JSON |
+| Kelemahan | rapuh antar versi; keystroke nyasar | blocking + timeout; tanpa respons → prompt muncul lagi |
+
+A2 menghapus kebutuhan capture-verify-send untuk approval (tidak ada lagi
+keystroke yang bisa nyasar ke dialog). Satu-satunya key yang resmi
+didokumentasikan untuk dialog permission TUI adalah `Esc` (dismiss). A1 tetap relevan untuk **input teks
+bebas ke composer TUI** (teks masuk ke baris input idle — jauh lebih aman
+daripada menjawab dialog). Sumber: [hooks#permissionrequest](https://code.claude.com/docs/en/hooks#permissionrequest).
+
+Catatan hook lain: Notification hook `permission_prompt` baru fire setelah
+prompt idle ~6 detik — untuk push instan ke watch, pakai PermissionRequest.
+
+## Syarat hidup runtime (temuan 2026-08-18)
+
+Termux **tidak perlu terbuka di foreground** — tetapi prosesnya wajib hidup
+di background, karena claude, tmux, dan cw-hub semuanya proses Termux.
+Rantai penuhnya butuh **tiga proses hidup bersama**, semuanya di background,
+layar boleh mati total:
+
+| Proses | Perannya | Syarat tetap hidup |
+|---|---|---|
+| Termux | ruang kerja (claude+tmux+cw-hub) | wakelock, bebas battery-opt, tidak di-swipe, start ulang pasca-reboot |
+| Bridge app | kurir + P2P | foreground service (notifikasi persisten) |
+| Huawei Health | lift Bluetooth | sudah hidup terus by design sebagai companion watch |
+
+Kondisi mati yang harus diingat: swipe-away Termux dari recent apps dan
+reboot HP mematikan seluruh rantai. tmux melindungi dari tutup-buka jendela
+terminal, bukan dari matinya proses Termux.
+
 ## Open questions
 
-- Batas ukuran pesan/file per call P2P (menentukan chunking output tail)
-- Apakah semua sub-kemampuan Wear Engine tersedia untuk Fit 4 Pro
-- Konfirmasi aturan bundle name pairing watch app ↔ bridge app
+- Batas ukuran pesan P2P: **resolved** (1 KB, lihat Amendmen 1)
+- Bundle name pairing: **resolved** (wajib match, lihat Amendmen 1)
+- Mapping keystroke approval: **resolved** — digantikan mekanisme A2
+  (PermissionRequest hook); keystroke hanya untuk teks bebas
 - Kecepatan/keandalan long-poll localhost di belakang doze mode (mitigasi:
   `termux-wake-lock` + foreground service)
-- Perilaku opsi permission TUI antar versi Claude Code (memengaruhi mapping
-  tombol approve → keystroke)
+- Perilaku timeout PermissionRequest hook: apa yang terjadi pada session
+  saat hook melebihi timeout tanpa jawaban (riset)
+- Ketersediaan keyboard/voice pada notification reply di Fit 4 Pro
+  (vs hanya quick reply preset) — verifikasi per-device

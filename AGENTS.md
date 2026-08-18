@@ -32,6 +32,7 @@ research-ai-agents/
 | [`pi-agent-core/`](./pi-agent-core) | Pi toolkit (earendil-works/pi) — architecture, comparisons, code examples |
 | [`session-interchange-format/`](./session-interchange-format) | Portable format for saving/seeding AI agent session context |
 | [`ai-terminology-map/`](./ai-terminology-map) | Taxonomy of AI terms (concept/technique/pattern/methodology/architecture/protocol/artifact) + "X engineering" stack |
+| [`huawei-wearable-agents/`](./huawei-wearable-agents) | AI agents on Huawei wearables (Watch Fit 4 Pro) — Lite Wearable platform, DevEco/Wear Engine toolchain, thin-client agent architecture, two-lane bridge design (Lane A MVP: remote Claude Code from Termux) |
 
 ### Topic Conventions
 

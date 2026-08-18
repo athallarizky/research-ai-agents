@@ -28,6 +28,9 @@ di companion app HP, komunikasi via Wear Engine P2P. Detail di
    keputusan tech stack, kontrak API cw-hub, protokol safety
 6. `06-system-explained-simply.md` — versi bahasa sederhana: analogi kantor,
    tiga cerita alur (approve, pengawasan, input dari jam)
+7. `07-project-ideas-catalog.md` — katalog ide project (2026-08-18):
+   produktivitas, gamification/belajar bahasa, AI pet, hiburan — semua
+   masih level ide, belum ada yang dibawa ke tahap design
 
 ## Konsep hasil riset
 

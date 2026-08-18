@@ -13,6 +13,16 @@ If you are an LLM-based agent (Claude Code, Cursor, Continue, Aider, Codex, cust
 - **License:** MIT
 - **Sister repo (private):** `research-ai-agents-sessions` — raw session archives. Not in this repo.
 
+## Scope
+
+This repository is for **research and discussion only**.
+
+- Do not implement code or technical solutions for the topics researched here
+- Do not suggest implementation as a next step — follow-up work is more
+  research, discussion, or documentation
+- The only executable code in this repo is `session-interchange-format/tools/`,
+  which serves the spec itself
+
 ## How to Navigate
 
 ```

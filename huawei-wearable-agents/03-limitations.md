@@ -40,6 +40,18 @@ AppGallery untuk seri Fit sangat sedikit isinya. Sisi gelap: sedikit
 referensi, komunitas kecil, banyak trial-error sendiri. Sisi terang:
 nyaris tidak ada kompetisi, dan device-nya ada di tangan banyak orang.
 
+### 5. Tidak ada keypad untuk app pihak ketiga (temuan 2026-08-18)
+
+Framework Lite Wearable tidak memiliki komponen input teks — IME Kit (dan
+keyboard sistem) hanya tersedia di HarmonyOS penuh. Satu-satunya jalur teks
+bebas dari watch adalah **notification reply**: system (via Huawei Health)
+menyediakan UI balasan miliknya — quick reply preset, emoji, keyboard/voice
+tergantung device — dan teksnya kembali ke app Android melalui mekanisme
+RemoteInput standar. Berlaku hanya untuk pairing Android.
+
+Implikasi desain: preset prompt hidup di watch app; teks bebas menumpang
+kanal notifikasi. Detail di `05-two-lane-bridge-design.md`.
+
 ## Ringkasan: apa yang tidak mungkin vs apa yang tetap bisa
 
 | Tidak mungkin (di watch) | Tetap bisa |
@@ -49,6 +61,7 @@ nyaris tidak ada kompetisi, dan device-nya ada di tangan banyak orang.
 | STT/TTS lokal | Render respons teks agent |
 | LLM on-device / model kecil | Kirim perintah singkat (tap/preset/voice via HP) |
 | Sideload APK | Distribusi via AppGallery (review Huawei) |
+| Keypad/input teks bebas di app | Teks bebas via notification reply (RemoteInput) |
 
 ## Prinsip yang bisa ditarik
 

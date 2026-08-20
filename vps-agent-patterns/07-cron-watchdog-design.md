@@ -11,7 +11,9 @@
 
 Status: **level desain (2026-08-20), belum terkunci** — pilihan strategi issue
 masih terbuka (lihat bagian strategi issue). Sesuai scope repo: implementasi,
-kalau jalan, dikerjakan di luar repo riset ini.
+kalau jalan, dikerjakan di luar repo riset ini — di **repo ops terpisah**
+(mis. `vps-agents`), lihat catatan penempatan di
+`05-agent-ideas-catalog.md`.
 
 ## Jawaban tiga pertanyaan
 

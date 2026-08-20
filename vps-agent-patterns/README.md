@@ -36,7 +36,16 @@ self-hosted runner, dan daemon + cron.
    semua masih level ide, belum ada yang dibawa ke tahap design
 6. `06-pi-as-vps-runtime.md` — penilaian pi-agent-core sebagai runtime
    (2026-08-20): pemetaan guardrail -> fasilitas Pi, verdict per jenis job,
-   open question headless `pi-coding-agent`
+   hasil verifikasi headless (`-p` / `--mode rpc`) dan permission (tanpa
+   built-in; container sebagai boundary)
+7. `07-cron-watchdog-design.md` — desain diskusi watchdog cron-jam
+   (2026-08-20): `createAgentSession` sebagai entry one-shot, pembagian
+   kerja workflow-vs-agent, agent tanpa tools, strategi issue + akun bot
+   fine-grained PAT — level desain, belum terkunci
+8. `08-testing-strategy.md` — strategi testing watchdog (2026-08-20):
+   seam di tiap efek samping, piramida L0-L5 (fixture classify -> agent
+   dry-run -> sandbox repo -> staging VPS), uji dedup + anti-halusinasi +
+   negative test PAT
 
 ## Intuisi utama
 

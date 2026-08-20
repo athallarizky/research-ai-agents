@@ -72,7 +72,62 @@ systemPrompt, satu baris).
 | Jenis job | Runtime |
 |---|---|
 | Watchdog, stale-auditor, weekly digest, traffic insight (tools sempit, read-mostly) | pi-agent-core library — ideal |
-| Draft-to-publish butler (butuh kekuatan coding agent penuh) | pi-coding-agent headless / CLI agent lain — verifikasi dulu headless-nya |
+| Draft-to-publish butler (butuh kekuatan coding agent penuh) | pi-coding-agent headless (`-p` / `--mode rpc`) dalam container ephemeral |
+
+## Hasil verifikasi: headless dan permission (2026-08-20)
+
+Diverifikasi langsung ke repo dan docs (README, CHANGELOG coding-agent,
+docs SDK di pi.dev):
+
+**Headless — terkonfirmasi, tiga tingkatan:**
+
+| Mode | Bentuk |
+|---|---|
+| `pi -p` / `--print` | batch non-interaktif: input message/stdin -> stdout, tanpa TUI (setara `claude -p`) |
+| `--mode json` | output JSON untuk konsumsi programatik |
+| `--mode rpc` | proses headless yang di-drive via RPC — mengisi varian daemon long-lived dari `03-trigger-wiring.md` |
+
+Mode non-interaktif melewati trust prompt yang muncul di mode interaktif.
+
+**Permission — tidak ada, dan disengaja:**
+
+- README: "Pi does not include a built-in permission system for restricting
+  filesystem, process, network, or credential access" — default menjalankan
+  agent dengan permission penuh user yang mengeksekusinya.
+- Solusi resmi untuk boundary kuat: **containerize/sandbox** — tiga pola
+  didokumentasikan: extension Gondolin (micro-VM Linux), Docker biasa,
+  OpenShell.
+- Allowlist konfiguratif ala `allowedTools` hanya via extension komunitas:
+  `@pi-lab/permissions` (allow/deny/ask dari JSON config) dan
+  `@aprimediet/permission-modes`.
+- Preseden kehati-hatian — discussion #1655: project-scoped
+  `shellCommandPrefix` dapat mengeksekusi perintah sebelum approval;
+  approval berbasis config pernah bocor, container belum.
+
+**Kontras filosofi dengan Claude Code:** CC = permission built-in, developer
+opt-out; Pi = tanpa permission, developer opt-in via container. Pi memperlakukan
+agent seperti program Unix lain — `curl` juga tidak minta izin. Boundary-nya
+isolasi proses, bukan konfigurasi. Konsekuensi untuk arsitektur VPS:
+**isolation level kernel > isolasi config** — container ephemeral per job
+adalah permission boundary yang lebih kuat daripada flag `allowedTools`.
+
+**SDK untuk penggunaan programatik (`createAgentSession`):**
+
+- Factory tingkat tinggi di atas `new Agent()` — melapisi session lifecycle,
+  message history, compaction, prompt templates, extensions, skills, queueing.
+- `await session.prompt(...)` resolve setelah seluruh run selesai termasuk
+  retries — semantik one-shot yang pas untuk cron.
+- Opsi relevan: `tools: [...]`, `cwd`, `sessionManager`
+  (`SessionManager.inMemory()` untuk run stateless).
+- SDK juga mengekspor `runPrintMode` — "single-shot mode: send prompts,
+  output result, exit".
+- Pemakaian konkret pada desain watchdog: `07-cron-watchdog-design.md`.
+
+Sumber: [repo pi](https://github.com/earendil-works/pi),
+[CHANGELOG coding-agent](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/CHANGELOG.md),
+[SDK docs — createAgentSession](https://pi.dev/docs/latest/sdk),
+[@pi-lab/permissions](https://pi.dev/packages/@pi-lab/permissions),
+[discussion #1655](https://github.com/earendil-works/pi/discussions/1655).
 
 ## Caveat dan open questions
 
@@ -80,9 +135,10 @@ systemPrompt, satu baris).
    (`permissionMode`, `allowedTools`) — policy ditulis sendiri di hooks.
    Untuk kasus ini justru lebih bersih (allowlist = tools yang diregistrasi),
    tapi memang kerja sendiri, bukan diwarisi dari runtime.
-2. **Open question: headless mode `pi-coding-agent`.** Belum diverifikasi
-   apakah CLI Pi punya mode non-interaktif + flag permission setara
-   `agent -p`. Menentukan jalannya ide draft-butler.
+2. **Headless `pi-coding-agent`: terverifikasi ada** (`-p`, `--mode json`,
+   `--mode rpc`), tetapi permission-nya memang tidak ada bawaan — boundary
+   kuat harus dari container, allowlist hanya via extension komunitas.
+   Detail di bagian hasil verifikasi di atas.
 3. **Maturity.** Proyek kecil dibanding SDK vendor — ditopang strict supply
    chain Pi (pinned deps, audit), tetap berarti maintenance jadi tanggungan
    sendiri.

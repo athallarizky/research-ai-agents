@@ -43,6 +43,7 @@ research-ai-agents/
 | [`session-interchange-format/`](./session-interchange-format) | Portable format for saving/seeding AI agent session context |
 | [`ai-terminology-map/`](./ai-terminology-map) | Taxonomy of AI terms (concept/technique/pattern/methodology/architecture/protocol/artifact) + "X engineering" stack |
 | [`huawei-wearable-agents/`](./huawei-wearable-agents) | AI agents on Huawei wearables (Watch Fit 4 Pro) — Lite Wearable platform, DevEco/Wear Engine toolchain, thin-client agent architecture, two-lane bridge design (Lane A MVP: remote Claude Code from Termux) |
+| [`vps-agent-patterns/`](./vps-agent-patterns) | Running agents on your own server for repo automation — agent loop concept, framework landscape (LangChain vs Agent SDK vs headless CLI vs raw loop), trigger wiring (webhook receiver / self-hosted runner / daemon+cron), guardrails, ideas catalog |
 
 ### Topic Conventions
 

@@ -18,6 +18,7 @@ This repo is a personal knowledge base of research on AI agent tooling. Each top
 | [session-interchange-format](./session-interchange-format) | Portable format for saving and seeding AI agent session context across tools (Claude Code, Cursor, Continue, custom agents) | 2026-08-08 |
 | [ai-terminology-map](./ai-terminology-map) | Taxonomy of AI terms — concept vs technique vs pattern vs methodology vs architecture vs protocol vs artifact; the "X engineering" stack (prompt → context → harness → loop → graph) | 2026-08-16 |
 | [huawei-wearable-agents](./huawei-wearable-agents) | AI agent di wearable Huawei (Watch Fit 4 Pro) — platform Lite Wearable vs HarmonyOS NEXT, toolchain DevEco/Wear Engine, batasan, arsitektur thin client, two-lane bridge design (remote Claude Code dari Termux) | 2026-08-18 |
+| [vps-agent-patterns](./vps-agent-patterns) | Menjalankan agent di server untuk otomasi repo — konsep agent loop, lanskap framework (LangChain vs Agent SDK vs CLI headless vs loop raw), pola trigger (webhook receiver / self-hosted runner / daemon+cron), guardrail, katalog ide, penilaian Pi sebagai runtime | 2026-08-20 |
 
 ## Tools
 

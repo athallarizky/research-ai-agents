@@ -46,6 +46,17 @@ self-hosted runner, dan daemon + cron.
    seam di tiap efek samping, piramida L0-L5 (fixture classify -> agent
    dry-run -> sandbox repo -> staging VPS), uji dedup + anti-halusinasi +
    negative test PAT
+9. `09-manual-trigger-and-next-agents.md` — diskusi lanjutan (2026-08-21):
+   kandidat agent maintenance-server berikutnya diklasifikasi by-trigger
+   (digest, auditor, cert-watcher, backup-verifier, patch-advisor,
+   log-triage), insight "cron-first membuat manual trigger gratis", dan
+   spectrum mekanisme trigger manual (SSH -> npm script -> pi interactive ->
+   chat bot -> webhook listener)
+10. `10-multi-vps-and-cross-repo-ops.md` — model operasional repo agent
+   terpisah (2026-08-21): combine dengan repo produk via host/issues/file
+   (bukan kode), multi-VPS tanpa pusat & tanpa data lake (repo = program,
+   bukan gudang log), dua model env (Actions menyuntik vs `.env` di disk),
+   penolakan model pusat, dan prinsip "silence is a signal"
 
 ## Intuisi utama
 

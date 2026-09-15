@@ -19,6 +19,8 @@ This repo is a personal knowledge base of research on AI agent tooling. Each top
 | [ai-terminology-map](./ai-terminology-map) | Taxonomy of AI terms — concept vs technique vs pattern vs methodology vs architecture vs protocol vs artifact; the "X engineering" stack (prompt → context → harness → loop → graph) | 2026-08-16 |
 | [huawei-wearable-agents](./huawei-wearable-agents) | AI agent di wearable Huawei (Watch Fit 4 Pro) — platform Lite Wearable vs HarmonyOS NEXT, toolchain DevEco/Wear Engine, batasan, arsitektur thin client, two-lane bridge design (remote Claude Code dari Termux) | 2026-08-18 |
 | [vps-agent-patterns](./vps-agent-patterns) | Menjalankan agent di server untuk otomasi repo — konsep agent loop, lanskap framework (LangChain vs Agent SDK vs CLI headless vs loop raw), pola trigger (webhook receiver / self-hosted runner / daemon+cron), guardrail, katalog ide, penilaian Pi sebagai runtime | 2026-08-20 |
+| [loop-engineering](./loop-engineering) | Memilah agent loop (konsep) vs loop engineering (disiplin, Osmani 2026); silsilah engineered loop lintas domain (control loop → REPL → agent loop); empat properti loop yang di-engineer (terminasi, biaya, sinyal umpan balik, konvergensi); pengamatan empiris dari membangun mini-harness | 2026-08-28 |
+| [resumable-llm-streaming](./resumable-llm-streaming) | Arsitektur resumable real-time LLM streaming dengan Redis Streams (studi kasus Glance Engineering); pemisahan gateway vs agent, addressability di level turn, named rendezvous, penanganan suspended turn | 2026-09-15 |
 
 ## Tools
 

@@ -44,6 +44,8 @@ research-ai-agents/
 | [`ai-terminology-map/`](./ai-terminology-map) | Taxonomy of AI terms (concept/technique/pattern/methodology/architecture/protocol/artifact) + "X engineering" stack |
 | [`huawei-wearable-agents/`](./huawei-wearable-agents) | AI agents on Huawei wearables (Watch Fit 4 Pro) — Lite Wearable platform, DevEco/Wear Engine toolchain, thin-client agent architecture, two-lane bridge design (Lane A MVP: remote Claude Code from Termux) |
 | [`vps-agent-patterns/`](./vps-agent-patterns) | Running agents on your own server for repo automation — agent loop concept, framework landscape (LangChain vs Agent SDK vs headless CLI vs raw loop), trigger wiring (webhook receiver / self-hosted runner / daemon+cron), guardrails, ideas catalog |
+| [`loop-engineering/`](./loop-engineering) | Agent loop (concept) vs loop engineering (discipline) — engineered-loop lineage across domains (control loop, training loop, REPL), four engineering properties (termination, cost, feedback signal, convergence), empirical observations from building a minimal harness |
+| [`resumable-llm-streaming/`](./resumable-llm-streaming) | Resumable real-time LLM streaming with Redis Streams (Glance case study) — gateway vs agent separation, turn-level addressability, named rendezvous pattern, suspended turn handling |
 
 ### Topic Conventions
 

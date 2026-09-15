@@ -3,15 +3,12 @@
 Thumbs.db
 
 # Editors
-.vscode/
 .idea/
 *.swp
 *.swo
 *~
 
 # Secrets — never commit
-.env
-.env.*
 *.key
 *.pem
 *.p12
@@ -42,3 +39,4 @@ __pycache__/
 venv/
 dist/
 build/
+config.bat

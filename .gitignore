@@ -39,4 +39,3 @@ __pycache__/
 venv/
 dist/
 build/
-config.bat
